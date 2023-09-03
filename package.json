@@ -1,0 +1,27 @@
+{
+  "name": "final-year-proj",
+  "version": "1.0.0",
+  "description": "final year project for university. Discord management bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sel523/final-year-proj.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "final-year-project"
+  ],
+  "author": "selwyn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sel523/final-year-proj/issues"
+  },
+  "homepage": "https://github.com/Sel523/final-year-proj#readme",
+  "dependencies": {
+    "discord.js": "^14.13.0"
+  }
+}
