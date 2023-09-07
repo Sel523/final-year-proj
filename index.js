@@ -9,6 +9,17 @@ const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 
+async function loadFunctions() {
+  const functionFolders = await fs.readdir('./functions');
+  for (const folder of functionFolders) {
+    const functionFiles = (await fs.readdir(`./functions/${folder}`)).filter(
+      (file) => file.endsWith('.js'),
+    );
+    for (const file of functionFiles) {
+      require(`./functions/${folder}/${file}`)(client);
+    }
+  }
+}
 
 // When the client is ready, run this code (only once)
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
