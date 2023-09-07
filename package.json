@@ -24,5 +24,16 @@
   "dependencies": {
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.48.0",
+    "eslint-config-portsoc": "^1.0.1"
+  }, 
+  "eslintConfig": {
+    "extends": "portsoc",
+    "root": true,
+    "env": {
+      "browser": true
+    }
   }
 }
