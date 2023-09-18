@@ -4,7 +4,13 @@ const { token } = variables;
 const fs = require('fs').promises;
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers],
+});
 client.commands = new Collection();
 
 async function loadFunctions() {
