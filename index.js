@@ -44,4 +44,6 @@ async function startBot() {
   client.handleCommands();
 }
 
-startBot().catch(console.error);
+startBot()
+  .then(console.log("Started"))
+  .catch(console.error);
