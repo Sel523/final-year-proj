@@ -22,13 +22,14 @@
   },
   "homepage": "https://github.com/Sel523/final-year-proj#readme",
   "dependencies": {
+    "@azure-rest/ai-content-safety": "^1.0.0",
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
     "eslint-config-portsoc": "^1.0.1"
-  }, 
+  },
   "eslintConfig": {
     "extends": "portsoc",
     "root": true,
