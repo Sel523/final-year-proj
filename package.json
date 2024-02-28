@@ -23,6 +23,7 @@
   "homepage": "https://github.com/Sel523/final-year-proj#readme",
   "dependencies": {
     "@azure-rest/ai-content-safety": "^1.0.0",
+    "@azure/core-auth": "^1.6.0",
     "discord.js": "^14.13.0",
     "dotenv": "^16.3.1"
   },
