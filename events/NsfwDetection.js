@@ -14,7 +14,7 @@ module.exports = {
     if (msg.attachments.length <= 0) {
       return;
     }
-    let imageUrls = []
+    let imageUrls = [];
     for (let attachment of msg.attachments) {
       if (attachment[1].contentType.startsWith('image')) {
         imageUrls.push(attachment[1].url);
@@ -25,19 +25,19 @@ module.exports = {
       let result = await analyzeMessageImage(img);
       if (result.block === true) {
         await msg.delete();
-        return await msg.channel.send(`An image has been deleted due to it violating these rules: ${result.violations.join(', ')}`)
+        return await msg.channel.send(`An image has been deleted due to it violating these rules: ${result.violations.join(', ')}`);
       }
     }
   },
 };
 
 const imgViolationThresholds = {
-  'Hate': 3,
-  'Sexual': 3,
-  'Violence': 4,
-  'SelfHarm': 4
-}
-const combinedViolationThreshold = 4
+  Hate: 3,
+  Sexual: 3,
+  Violence: 4,
+  SelfHarm: 4,
+};
+const combinedViolationThreshold = 4;
 
 async function analyzeMessageImage(imageUrl) {
   const endpoint = process.env.azureContentSafetyEndpoint || '<endpoint>';
@@ -60,7 +60,7 @@ async function analyzeMessageImage(imageUrl) {
     console.log(
       imageCategoriesAnalysisOutput.category,
       ' severity: ',
-      imageCategoriesAnalysisOutput.severity
+      imageCategoriesAnalysisOutput.severity,
     );
   }
 
@@ -70,7 +70,7 @@ async function analyzeMessageImage(imageUrl) {
 
   for (let category of result.body.categoriesAnalysis) {
     if (category.severity >= imgViolationThresholds[category.category]) {
-      violations.push(category.category)
+      violations.push(category.category);
     }
     if (category.severity > 0) {
       totalViolations.push(category.category);
