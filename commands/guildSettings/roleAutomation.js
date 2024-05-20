@@ -14,7 +14,7 @@ module.exports = {
           { name: 'First Year', value: '1' },
           { name: 'Second Year', value: '2' },
           { name: 'Third Year', value: '3' },
-          { name: 'Fourth Year', value: '4' }
+          { name: 'Fourth Year', value: '4' },
         ),
     ),
   async execute(interaction) {

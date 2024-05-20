@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, PermissionFlagsBits  } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const db = require('../../services/db');
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
       option
         .setName('channel')
         .setDescription('The channel to welcome users')
-        .setRequired(true)
+        .setRequired(true),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction) {
@@ -18,7 +18,7 @@ module.exports = {
     await db.query('INSERT INTO welcome_channels (guild_id, channel_id) VALUES (?, ?) ON DUPLICATE KEY UPDATE channel_id=?', [interaction.guild.id, channel.id, channel.id]);
 
     await interaction.reply(
-      `<@${interaction.member.id}>, you have set the welcome channel to ${channel.name}!`
+      `<@${interaction.member.id}>, you have set the welcome channel to ${channel.name}!`,
     );
   },
 };

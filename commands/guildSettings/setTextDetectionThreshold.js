@@ -14,8 +14,8 @@ module.exports = {
           { name: 'Hate', value: 'Hate' },
           { name: 'Sexual', value: 'Sexual' },
           { name: 'Violence', value: 'Violence' },
-          { name: 'Self Harm', value: 'SelfHarm' }
-        )
+          { name: 'Self Harm', value: 'SelfHarm' },
+        ),
     )
     .addIntegerOption((option) =>
       option
@@ -25,7 +25,7 @@ module.exports = {
         )
         .setMaxValue(7)
         .setMinValue(1)
-        .setRequired(true)
+        .setRequired(true),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
   async execute(interaction) {
@@ -38,7 +38,7 @@ module.exports = {
     );
 
     await interaction.reply(
-      `<@${interaction.member.id}>, you have set the threshold for ${thresholdType} detections to ${thresholdValue}!`
+      `<@${interaction.member.id}>, you have set the threshold for ${thresholdType} detections to ${thresholdValue}!`,
     );
   },
 };

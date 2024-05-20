@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 module.exports = (client) => {
+  // eslint-disable-next-line require-await
   client.handleEvents = async () => {
     const eventsPath = path.join(__dirname, '../../events');
     const eventFiles = fs

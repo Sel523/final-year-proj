@@ -24,17 +24,17 @@ module.exports = {
     const embed = new EmbedBuilder() // create a new embed
       .setTitle('Current AI Thresholds') // set the title of the embed
       .setDescription(`__**Text Detection**__
-      **Hate:** ${hateTextThreshold} Default: ${defaultTextViolationThresholds.Hate} // display the hate text threshold for the guild
+      **Hate:** ${hateTextThreshold} Default: ${defaultTextViolationThresholds.Hate} 
       **Sexual:** ${sexualTextThreshold} Default: ${defaultTextViolationThresholds.Sexual}
       **Violence:** ${violenceTextThreshold} Default: ${defaultTextViolationThresholds.Violence}
       **Self Harm:** ${selfHarmTextThreshold} Default: ${defaultTextViolationThresholds.SelfHarm}
 
       __**Image Detection**__
-      **Hate:** ${hateImgThreshold} Default: ${defaultImgViolationThresholds.Hate} // display the hate image threshold for the guild
+      **Hate:** ${hateImgThreshold} Default: ${defaultImgViolationThresholds.Hate} 
       **Sexual:** ${sexualImgThreshold} Default: ${defaultImgViolationThresholds.Sexual}
       **Violence:** ${violenceImgThreshold} Default: ${defaultImgViolationThresholds.Violence}
       **Self Harm:** ${selfHarmImgThreshold} Default: ${defaultImgViolationThresholds.SelfHarm}
-      `);
+      `); // set the description of the embed with the current thresholds
 
 
     await interaction.reply({ embeds: [embed] }); // send the embed as a reply

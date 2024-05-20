@@ -43,11 +43,11 @@ module.exports = {
             .setTitle('AI Image Detection')
             .addFields(
               { name: 'Message Author', value: `<@${msg.author.id}>` },
-              { name: 'Message Violations', value: result.violations.join(', ')}
+              { name: 'Message Violations', value: result.violations.join(', ') },
             )
             .setImage(img);
 
-          await channel.send({embeds: [embed]}); // send an embed to the log channel with the message author and the violations
+          await channel.send({ embeds: [embed] }); // send an embed to the log channel with the message author and the violations
         }
         return await msg.channel.send(`An image has been deleted due to it violating these rules: ${result.violations.join(', ')}`);
       }
@@ -106,13 +106,15 @@ async function analyzeMessageImage(imageUrl, thresholds) {
   }
 }
 
+// eslint-disable-next-line camelcase
 async function getImgThresholds(guild_id) {
+  // eslint-disable-next-line camelcase
   const thresholds = await db.query('SELECT name, value FROM image_detection_thresholds WHERE guild_id=?', [guild_id]); // get the image detection thresholds for the guild
 
-  const hateThreshold = thresholds.find(obj => obj.name === 'Hate')?.value ?? defaultImgViolationThresholds['Hate']; // get the hate image threshold for the guild
-  const sexualThreshold = thresholds.find(obj => obj.name === 'Sexual')?.value ?? defaultImgViolationThresholds['Sexual'];
-  const violenceThreshold = thresholds.find(obj => obj.name === 'Violence')?.value ?? defaultImgViolationThresholds['Violence'];
-  const selfHarmThreshold = thresholds.find(obj => obj.name === 'SelfHarm')?.value ?? defaultImgViolationThresholds['SelfHarm'];
+  const hateThreshold = thresholds.find(obj => obj.name === 'Hate')?.value ?? defaultImgViolationThresholds.Hate; // get the hate image threshold for the guild
+  const sexualThreshold = thresholds.find(obj => obj.name === 'Sexual')?.value ?? defaultImgViolationThresholds.Sexual;
+  const violenceThreshold = thresholds.find(obj => obj.name === 'Violence')?.value ?? defaultImgViolationThresholds.Violence;
+  const selfHarmThreshold = thresholds.find(obj => obj.name === 'SelfHarm')?.value ?? defaultImgViolationThresholds.SelfHarm;
 
   return { // return an object with the thresholds
     Hate: hateThreshold,

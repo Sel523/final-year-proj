@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const { Events, EmbedBuilder } = require('discord.js');
 const ContentSafetyClient = require('@azure-rest/ai-content-safety').default;
 const { isUnexpected } = require('@azure-rest/ai-content-safety');
@@ -33,24 +34,24 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle('AI Text Detection')
         .addFields(
-          {name: 'Message Author', value: `<@${msg.author.id}>`},
-          {name: 'Message Violations', value: msgViolation.violations.join(', ') },
-          {name: 'Message Content', value: msg.content },
-        )
+          { name: 'Message Author', value: `<@${msg.author.id}>` },
+          { name: 'Message Violations', value: msgViolation.violations.join(', ') },
+          { name: 'Message Content', value: msg.content },
+        );
 
-      await channel.send({embeds: [embed]});
+      await channel.send({ embeds: [embed] });
     }
   },
 };
 
 async function analyzeMessageText(text, thresholds) {
-  const endpoint = process.env['azureContentSafetyEndpoint'] || '<endpoint>';
-  const key = process.env['azureContentSafetyApiKey'] || '<key>';
+  const endpoint = process.env.azureContentSafetyEndpoint || '<endpoint>';
+  const key = process.env.azureContentSafetyApiKey || '<key>';
 
   const credential = new AzureKeyCredential(key);
   const client = ContentSafetyClient(endpoint, credential);
 
-  const analyzeTextOption = { text: text };
+  const analyzeTextOption = { text };
   const analyzeTextParameters = { body: analyzeTextOption };
 
   const result = await client.path('/text:analyze').post(analyzeTextParameters); // analyse the text
@@ -63,7 +64,7 @@ async function analyzeMessageText(text, thresholds) {
   const totalViolations = []; //  create an array to store the total violations
   let totalSeverity = 0;
 
-  for (let category of result.body.categoriesAnalysis) {
+  for (const category of result.body.categoriesAnalysis) {
     if (category.severity >= thresholds[category.category]) {
       violations.push(category.category); // if the severity of the category is greater than the threshold for the category add it to the violations array
     }
@@ -74,7 +75,7 @@ async function analyzeMessageText(text, thresholds) {
   }
 
   return {
-    block: (violations.length > 0) || (totalSeverity >= thresholds['combined']),
+    block: (violations.length > 0) || (totalSeverity >= thresholds.combined),
     violations: totalViolations, // return the violations
   };
 }
@@ -82,10 +83,10 @@ async function analyzeMessageText(text, thresholds) {
 async function getTextThresholds(guild_id) {
   const thresholds = await db.query('SELECT name, value FROM text_detection_thresholds WHERE guild_id=?', [guild_id]); // get the text detection thresholds for the guild
 
-  const hateThreshold = thresholds.find(obj => obj.name === 'Hate')?.value ?? defaultTextViolationThresholds['Hate']; // get the hate text threshold for the guild
-  const sexualThreshold = thresholds.find(obj => obj.name === 'Sexual')?.value ?? defaultTextViolationThresholds['Sexual'];
-  const violenceThreshold = thresholds.find(obj => obj.name === 'Violence')?.value ?? defaultTextViolationThresholds['Violence'];
-  const selfHarmThreshold = thresholds.find(obj => obj.name === 'SelfHarm')?.value ?? defaultTextViolationThresholds['SelfHarm'];
+  const hateThreshold = thresholds.find(obj => obj.name === 'Hate')?.value ?? defaultTextViolationThresholds.Hate; // get the hate text threshold for the guild
+  const sexualThreshold = thresholds.find(obj => obj.name === 'Sexual')?.value ?? defaultTextViolationThresholds.Sexual;
+  const violenceThreshold = thresholds.find(obj => obj.name === 'Violence')?.value ?? defaultTextViolationThresholds.Violence;
+  const selfHarmThreshold = thresholds.find(obj => obj.name === 'SelfHarm')?.value ?? defaultTextViolationThresholds.SelfHarm;
 
   return { // return the thresholds
     Hate: hateThreshold,

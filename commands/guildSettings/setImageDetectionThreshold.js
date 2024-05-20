@@ -15,7 +15,7 @@ module.exports = {
           { name: 'Sexual', value: 'Sexual' },
           { name: 'Violence', value: 'Violence' },
           { name: 'Self Harm', value: 'SelfHarm' },
-        )
+        ),
     )
     .addIntegerOption((option) =>
       option
@@ -34,7 +34,7 @@ module.exports = {
 
     await db.query(
       'INSERT INTO image_detection_thresholds (guild_id, name, value) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE value=?',
-      [interaction.guild.id, thresholdType, thresholdValue, thresholdValue]
+      [interaction.guild.id, thresholdType, thresholdValue, thresholdValue],
     );
 
     await interaction.reply(
