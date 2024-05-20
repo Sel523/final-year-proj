@@ -25,7 +25,8 @@
     "@azure-rest/ai-content-safety": "^1.0.0",
     "@azure/core-auth": "^1.6.0",
     "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "mysql2": "^3.9.7"
   },
   "devDependencies": {
     "eslint": "^8.48.0",

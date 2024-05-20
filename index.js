@@ -45,5 +45,5 @@ async function startBot() {
 }
 
 startBot()
-  .then(console.log("Started"))
+  .then(console.log('Started'))
   .catch(console.error);
