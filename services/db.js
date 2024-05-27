@@ -10,7 +10,6 @@ const pool = mysql.createPool({
 });
 
 async function query(sql, args) {
-  // eslint-disable-next-line no-unused-vars
   const [rows, fields] = await pool.query(sql, args);
 
   return rows;
